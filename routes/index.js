@@ -11,12 +11,16 @@ var connection = mysql.createConnection({
   database :'ecommerce',
 });
 
+router.get('/', function(req, res, next) {
+  res.render('login');
+});
+
 router.get('/questions', function(req, res, next) {
   res.render('mcq_questions');
 });
 
-router.get('/', function(req, res, next) {
-  res.render('login');
+router.get('/console', function(req, res, next) {
+  res.render('admin_page');
 });
 
 router.post('/submitlogin', function(req, res, next) {

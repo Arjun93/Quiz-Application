@@ -30,6 +30,7 @@ $(document).ready(function() {
 		            } 
 		            else if(json.code === "console") {
 		            	console.log("redirect to admin!");
+		            	window.location.replace("/console");
 		            }
 		            else {
 		            	console.log("failed"); // another sanity check
