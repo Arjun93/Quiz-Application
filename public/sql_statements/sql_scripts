@@ -1,0 +1,29 @@
+mysql -u root -p
+
+use ecommerce;
+
+show tables;
+
+create table user_credentials (
+ username varchar(20),
+ password varchar(20),
+ role varchar(20),
+ primary key(username)
+);
+
+insert into user_credentials values 
+("hsmith","smith","user");
+
+insert into user_credentials values 
+("tbucktoo","bucktoo","user");
+
+insert into user_credentials values 
+("jadmin","admin","administrator");
+
+create table user_answers {
+	username varchar(20),
+	answer1 int, feeback1 varchar(100),
+	answer2 int, feeback2 varchar(100),
+	answer3 int, feeback3 varchar(100)
+};
+

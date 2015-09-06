@@ -11,7 +11,6 @@ var connection = mysql.createConnection({
   database :'ecommerce',
 });
 
-/* GET home page. */
 router.get('/questions', function(req, res, next) {
   res.render('mcq_questions');
 });
@@ -21,11 +20,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/submitlogin', function(req, res, next) {
-  console.log("within post!");
   var user_name = req.body.ajaxdata.username;
   var password = req.body.ajaxdata.password;
-  validate_login_credentials(user_name,password);
-  res.send('received login information');
+  validate_login_credentials(user_name,password,res);
 });
 
 router.post('/submitanswer', function(req, res, next) {
@@ -42,9 +39,28 @@ router.post('/submitanswer', function(req, res, next) {
 	res.send('received answers');
 });
 
-function validate_login_credentials(user_name,password) {
-  console.log(user_name);
-  console.log(password);
+function validate_login_credentials(user_name,password,res) {
+  var login_result = false;
+  //connection.connect();
+  connection.query('SELECT * FROM user_credentials where username = ? AND password = ?',[user_name,password],function(err,rows) {            
+    if(err) {
+      console.log("Error Selecting : %s ",err );
+    }
+    if(rows.length > 0) {
+      if(String(rows[0].role)=="administrator") {
+        console.log("admin");
+        res.send({code:'console'});
+      }      
+      else {
+        console.log("user");
+        res.send({code:'mcq'});
+      }
+    }
+    else {
+      res.send({code:'same'});
+    }
+  });
+  //connection.end();
 }
 
 function insert_answers_db(answer_one,answer_two,answer_three) {

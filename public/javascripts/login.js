@@ -23,9 +23,19 @@ $(document).ready(function() {
 		   		
 		        // handle a successful response
 		        success : function(json) {
-		            console.log(json); // log the returned json to the console
-		            console.log("success"); // another sanity check
-		            window.location.replace("/questions");
+		            if( json.code === "mcq") {
+
+		            	console.log("success"); // another sanity check
+		            	window.location.replace("/questions");
+		            } 
+		            else if(json.code === "console") {
+		            	console.log("redirect to admin!");
+		            }
+		            else {
+		            	console.log("failed"); // another sanity check
+		            	alert("Invalid username or password!");
+		            	window.location.replace("/");
+		            }		           
 		        }, 
 		
 		        // handle a non-successful response
