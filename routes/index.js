@@ -12,9 +12,20 @@ var connection = mysql.createConnection({
 });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  /*res.render('index', { title: 'Express' });*/
+router.get('/questions', function(req, res, next) {
   res.render('mcq_questions');
+});
+
+router.get('/', function(req, res, next) {
+  res.render('login');
+});
+
+router.post('/submitlogin', function(req, res, next) {
+  console.log("within post!");
+  var user_name = req.body.ajaxdata.username;
+  var password = req.body.ajaxdata.password;
+  validate_login_credentials(user_name,password);
+  res.send('received login information');
 });
 
 router.post('/submitanswer', function(req, res, next) {
@@ -27,11 +38,16 @@ router.post('/submitanswer', function(req, res, next) {
 	var answer_one = req.body.ajaxdata.one;
 	var answer_two = req.body.ajaxdata.two;
 	var answer_three = req.body.ajaxdata.three;
-	insert_answers(answer_one,answer_two,answer_three);
-	res.send('mcq_questions');
+	insert_answers_db(answer_one,answer_two,answer_three);
+	res.send('received answers');
 });
 
-function insert_answers(answer_one,answer_two,answer_three) {
+function validate_login_credentials(user_name,password) {
+  console.log(user_name);
+  console.log(password);
+}
+
+function insert_answers_db(answer_one,answer_two,answer_three) {
 	
 }
 
