@@ -3,17 +3,23 @@ $(document).ready(function() {
 		var answer_one = $("input[name=group1]:checked").val();
 		var answer_two = $("input[name=group2]:checked").val()
 		var answer_three = $("input[name=group3]:checked").val()
+
 		var got_all_input = received_all_inputs(answer_one,answer_two,answer_three);
 		if(got_all_input == false) {
 			alert("Answer all questions!");
 		}
 		else {
 			validate_answers(answer_one,answer_two,answer_three);
-			//var ajaxdata = $("#mcq_form").serialize();
+			var response_one = $('#result1').text();
+			var response_two = $('#result2').text();
+			var response_three = $('#result3').text();
 			var ajaxdata = {
             'one': answer_one,
             'two': answer_two,
-            'three': answer_three
+            'three': answer_three,
+            'feedback_one': response_one,
+            'feedback_two': response_two,
+            'feedback_three': response_three
         	};
 			$.ajax({
 		        url : "/submitanswer", // the endpoint

@@ -20,7 +20,13 @@ router.get('/questions', function(req, res, next) {
 });
 
 router.get('/console', function(req, res, next) {
-  res.render('admin_page');
+  console.log("YO!");
+  connection.query('SELECT * FROM user_answers',function(err,rows) {            
+    if(err) {
+      console.log("Error Selecting : %s ",err );
+    }
+    res.render('admin_page',{data:rows});
+  });
 });
 
 router.post('/submitlogin', function(req, res, next) {
@@ -30,7 +36,6 @@ router.post('/submitlogin', function(req, res, next) {
 });
 
 router.post('/submitanswer', function(req, res, next) {
-	console.log("within post!");
 	/*var answerOne = req.body.group1;
 	var answerTwo = req.body.group2;
 	var answerThree = req.body.group3;
@@ -39,7 +44,11 @@ router.post('/submitanswer', function(req, res, next) {
 	var answer_one = req.body.ajaxdata.one;
 	var answer_two = req.body.ajaxdata.two;
 	var answer_three = req.body.ajaxdata.three;
-	insert_answers_db(answer_one,answer_two,answer_three);
+  var feedback_one = req.body.ajaxdata.feedback_one;
+  var feedback_two = req.body.ajaxdata.feedback_two;
+  var feedback_three = req.body.ajaxdata.feedback_three;
+  console.log(feedback_one);
+	insert_answers_db(answer_one,answer_two,answer_three,feedback_one,feedback_two,feedback_three);
 	res.send('received answers');
 });
 
@@ -67,8 +76,24 @@ function validate_login_credentials(user_name,password,res) {
   //connection.end();
 }
 
-function insert_answers_db(answer_one,answer_two,answer_three) {
-	
+function insert_answers_db(answer_one,answer_two,answer_three,feedback_one,feedback_two,feedback_three) {
+	var user = "hsmith";
+  var insert_data = {
+    username: user,
+    answer1: answer_one,
+    feedback1: feedback_one,
+    answer2: answer_two,
+    feedback2: feedback_two,
+    answer3: answer_three,
+    feedback3: feedback_three,
+  };
+  console.log(user);
+  connection.query('INSERT INTO user_answers set ? ',insert_data,function(err,rows) {            
+    if(err) {
+      console.log("Error Selecting : %s ",err );
+    }
+  });
+
 }
 
 /*function validateAnswers(answerOne,answerTwo,answerThree) {

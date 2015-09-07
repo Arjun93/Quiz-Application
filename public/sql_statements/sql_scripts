@@ -20,10 +20,10 @@ insert into user_credentials values
 insert into user_credentials values 
 ("jadmin","admin","administrator");
 
-create table user_answers {
+create table user_answers (
 	username varchar(20),
-	answer1 int, feeback1 varchar(100),
-	answer2 int, feeback2 varchar(100),
-	answer3 int, feeback3 varchar(100)
-};
+	answer1 int, feedback1 varchar(100),
+	answer2 int, feedback2 varchar(100),
+	answer3 int, feedback3 varchar(100)
+);
 

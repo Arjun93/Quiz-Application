@@ -15,6 +15,36 @@
   </head>
   <body	>
   	<div>Hello admin!</div>
+    <br>
+    
+    <table border="1" cellpadding="7" cellspacing="2">
+                <tr>
+                    <th width="50px">Serial Number</th>
+                    <th>Name</th>
+                    <th>Answer 1</th>
+                    <th>Answer 2</th>
+                    <th>Answer 3</th>
+                    <th>Feedback 1</th>
+                    <th>Feedback 2</th>
+                    <th>Feedback 3</th>
+                </tr>                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>                 
+                <tr>
+                    <td><%=(i+1)%></td>
+                    <td><%=data[i].username%></td>
+                    <td><%=data[i].answer1%></td>
+                    <td><%=data[i].answer2%></td>
+                    <td><%=data[i].answer3%></td>
+                    <td><%=data[i].feedback1%></td>
+                    <td><%=data[i].feedback2%></td>
+                    <td><%=data[i].feedback3%></td>
+                </tr>
+            <% }            
+             } %>
+                                                             
+    </table>
     
   </body>
 </html> 
