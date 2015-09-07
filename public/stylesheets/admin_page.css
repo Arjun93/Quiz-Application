@@ -1,0 +1,12 @@
+.float-right {
+  	float: right;
+}
+
+.display-inline {
+	display: inline-block;
+	padding-bottom: 20px;
+}
+
+.padding-20 {
+	padding:20px;
+}

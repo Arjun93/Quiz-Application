@@ -5,8 +5,8 @@
     <title>Questions</title>
     <meta name="Arjun" content="">
 
-    <!-- styles -->
-    <link href="stylesheets/style.css" rel="stylesheet">
+    <!-- styles --> 
+    <link href="stylesheets/styles.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src ="javascripts/mcq_questions.js">
 
@@ -14,47 +14,53 @@
 
   </head>
   <body	>
-  	<form id="mcq_form" method="post">
-  		<ol>
-  			<li>
-  				<div class="question-answer-set"> What is 2 + 2 ?</div>		
-	  			<input type="radio" name = "group1" value="4">4
-	  			<br>
-	  			<input type="radio" name = "group1" value="6">6		
-				  <br>
-          <input type="radio" name = "group1" value="22">22   
-          <br>
-				<label id="result1"></label>
+    <div><h2>Provide answers for the following questions.</h2></div>
+    <div>
+    	<form id="mcq_form" method="post">
+    		<ol>
+    			<li>
+    				<div class="question-answer-set"> What is 2 + 2 ?</div>		
+  	  			<input type="radio" name = "group1" value="4">4
+  	  			<br>
+  	  			<input type="radio" name = "group1" value="6">6		
+  				  <br>
+            <input type="radio" name = "group1" value="22">22   
+            <br>
+  				<label id="result1"></label>
 
-  			</li>
+    			</li>
+    		
+    			<li>
+    				<div class="question-answer-set"> What is 3 * 4 ?</div>		
+  	  			<input type="radio" name = "group2" value="12">12
+    				<br>
+    				<input type="radio" name = "group2" value="21">21		
+  				  <br>
+            <input type="radio" name = "group2" value="7">7   
+            <br>
+  				<label id="result2"></label>
+
+    			</li>
+    		
+    			<li>
+    				<div class="question-answer-set"> What is 2 / 2 ?</div>		
+  	  			<input type="radio" name = "group3" value="1">1
+    				<br>
+    				<input type="radio" name = "group3" value="2">2		
+  				  <br>
+            <input type="radio" name = "group3" value="0">0   
+            <br>
+  				<label id="result3"></label>
+
+    			</li>
+    		</ol>
   		
-  			<li>
-  				<div class="question-answer-set"> What is 3 * 4 ?</div>		
-	  			<input type="radio" name = "group2" value="12">12
-  				<br>
-  				<input type="radio" name = "group2" value="21">21		
-				  <br>
-          <input type="radio" name = "group2" value="7">7   
-          <br>
-				<label id="result2"></label>
-
-  			</li>
-  		
-  			<li>
-  				<div class="question-answer-set"> What is 2 / 2 ?</div>		
-	  			<input type="radio" name = "group3" value="1">1
-  				<br>
-  				<input type="radio" name = "group3" value="2">2		
-				  <br>
-          <input type="radio" name = "group3" value="0">0   
-          <br>
-				<label id="result3"></label>
-
-  			</li>
-  		</ol>
-		
-		<input id="mcq_submit_button" type="submit" value="Submit">
-	</form>
+  		<input id="mcq_submit_button" type="submit" value="Submit">
+      <a href="/logout_user">
+        <input id="logout_button" type="button" value="Logout">
+      </a>
+  	</form>
+  </div>
     
   </body>
 </html> 

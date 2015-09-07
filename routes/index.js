@@ -11,6 +11,11 @@ var connection = mysql.createConnection({
   database :'ecommerce',
 });
 
+router.get('/logout_user', function(req, res, next) {
+  req.session.destroy();
+  res.render('login');
+});
+
 router.get('/', function(req, res, next) {
   res.render('login');
 });
@@ -31,8 +36,7 @@ router.get('/console', function(req, res, next) {
 router.post('/submitlogin', function(req, res, next) {
   var user_name = req.body.ajaxdata.username;
   var password = req.body.ajaxdata.password;
-  req.session.end_user = user_name;
-  validate_login_credentials(user_name,password,res);
+  validate_login_credentials(user_name,password,req,res);
 });
 
 router.post('/submitanswer', function(req, res, next) {
@@ -48,7 +52,8 @@ router.post('/submitanswer', function(req, res, next) {
 	res.send('received answers');
 });
 
-function validate_login_credentials(user_name,password,res) {
+function validate_login_credentials(user_name,password,req,res) {
+  req.session.end_user = user_name;
   var login_result = false;
   //connection.connect();
   connection.query('SELECT * FROM user_credentials where username = ? AND password = ?',[user_name,password],function(err,rows) {            

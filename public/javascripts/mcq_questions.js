@@ -1,4 +1,12 @@
 $(document).ready(function() { 
+
+	
+
+	$('#logout_button').on('click' , function(event) {
+		
+	});
+
+
 	$('#mcq_form').on('submit' , function(event) {
 		var answer_one = $("input[name=group1]:checked").val();
 		var answer_two = $("input[name=group2]:checked").val()

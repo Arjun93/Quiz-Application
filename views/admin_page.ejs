@@ -7,16 +7,20 @@
 
     <!-- styles -->
     <link href="stylesheets/style.css" rel="stylesheet">
+    <link href="stylesheets/admin_page.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src ="javascripts/admin.js">
-
-    </script> 
+    <script src ="javascripts/admin.js"></script> 
 
   </head>
   <body	>
-  	<div>Hello admin!</div>
-    <br>
-    
+  	<div class="display-inline">Hello admin!</div>
+    <div class="float-right display-inline">
+       <a href="/logout_user">
+        <input id="logout_button" type="button" value="Logout">
+       </a> 
+    </div>
+
+    <div class="padding-20">    
     <table border="1" cellpadding="7" cellspacing="2">
                 <tr>
                     <th width="50px">Serial Number</th>
@@ -45,6 +49,7 @@
              } %>
                                                              
     </table>
+    </div>
     
   </body>
 </html> 

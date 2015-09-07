@@ -1,0 +1,15 @@
+.center-div {
+	position: absolute;
+	margin: auto;
+	width: 240px;
+	height: 200px;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.center-button {
+	padding-top:10px;
+	text-align: center;;
+}
