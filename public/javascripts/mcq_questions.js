@@ -9,6 +9,10 @@ $(document).ready(function() {
 			alert("Answer all questions!");
 		}
 		else {
+			$("#mcq_submit_button").prop("disabled",true);
+			$('input[name=group1]').attr("disabled",true);
+			$('input[name=group2]').attr("disabled",true);
+			$('input[name=group3]').attr("disabled",true);
 			validate_answers(answer_one,answer_two,answer_three);
 			var response_one = $('#result1').text();
 			var response_two = $('#result2').text();
