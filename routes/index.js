@@ -20,7 +20,6 @@ router.get('/questions', function(req, res, next) {
 });
 
 router.get('/console', function(req, res, next) {
-  console.log("YO!");
   connection.query('SELECT * FROM user_answers',function(err,rows) {            
     if(err) {
       console.log("Error Selecting : %s ",err );
@@ -32,23 +31,20 @@ router.get('/console', function(req, res, next) {
 router.post('/submitlogin', function(req, res, next) {
   var user_name = req.body.ajaxdata.username;
   var password = req.body.ajaxdata.password;
+  req.session.end_user = user_name;
   validate_login_credentials(user_name,password,res);
 });
 
 router.post('/submitanswer', function(req, res, next) {
-	/*var answerOne = req.body.group1;
-	var answerTwo = req.body.group2;
-	var answerThree = req.body.group3;
-	console.log(answerOne);
-	validateAnswers(answerOne,answerTwo,answerThree);*/
 	var answer_one = req.body.ajaxdata.one;
 	var answer_two = req.body.ajaxdata.two;
 	var answer_three = req.body.ajaxdata.three;
   var feedback_one = req.body.ajaxdata.feedback_one;
   var feedback_two = req.body.ajaxdata.feedback_two;
   var feedback_three = req.body.ajaxdata.feedback_three;
-  console.log(feedback_one);
-	insert_answers_db(answer_one,answer_two,answer_three,feedback_one,feedback_two,feedback_three);
+  var user = req.session.end_user;
+  console.log("Feedback 3:"+feedback_three);
+  insert_answers_db(user,answer_one,answer_two,answer_three,feedback_one,feedback_two,feedback_three);
 	res.send('received answers');
 });
 
@@ -76,9 +72,8 @@ function validate_login_credentials(user_name,password,res) {
   //connection.end();
 }
 
-function insert_answers_db(answer_one,answer_two,answer_three,feedback_one,feedback_two,feedback_three) {
-	var user = "hsmith";
-  var insert_data = {
+function insert_answers_db(user,answer_one,answer_two,answer_three,feedback_one,feedback_two,feedback_three) {
+	var insert_data = {
     username: user,
     answer1: answer_one,
     feedback1: feedback_one,
@@ -87,7 +82,6 @@ function insert_answers_db(answer_one,answer_two,answer_three,feedback_one,feedb
     answer3: answer_three,
     feedback3: feedback_three,
   };
-  console.log(user);
   connection.query('INSERT INTO user_answers set ? ',insert_data,function(err,rows) {            
     if(err) {
       console.log("Error Selecting : %s ",err );
@@ -95,33 +89,5 @@ function insert_answers_db(answer_one,answer_two,answer_three,feedback_one,feedb
   });
 
 }
-
-/*function validateAnswers(answerOne,answerTwo,answerThree) {
-  connection.query('SELECT * FROM rightAnswers',function(err,rows) {            
-    if(err) {
-      console.log("Error Selecting : %s ",err );
-    }
-    if(Number(answerOne) == rows[0].right_answer) {
-    	resultOne = 1;
-    }
-    else {
-    	resultOne = 0;
-    }
-    if(Number(answerTwo) == rows[1].right_answer) {
-    	resultTwo = 1;
-    }
-    else {
-    	resultTwo = 0;
-    }
-    if(Number(answerThree) == rows[2].right_answer) {
-    	resultThree = 1;
-    }
-    else {
-    	resultThree = 0;
-    }
-    }); 
-       
-  }*/
-
 
 module.exports = router;

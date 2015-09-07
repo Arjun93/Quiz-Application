@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	$('#login_form').on('submit' , function(event) {
 		var user_name = $("input[name=username]").val();
-		var password = $("input[name=password]").val()
+		var password = $("input[name=password]").val();
 		console.log(user_name);
 		console.log(password);
 		var got_all_input = received_all_inputs(user_name,password);
