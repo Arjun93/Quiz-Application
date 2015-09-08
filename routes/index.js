@@ -17,7 +17,26 @@ router.get('/logout_user', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  res.render('login');
+  var session_user_value = req.session.end_user;
+  if (typeof session_user_value === 'undefined') {
+    res.render('login');
+  }
+  else {
+    if(req.session.role == "administrator") {
+      connection.query('SELECT * FROM user_answers',function(err,rows) {            
+        if(err) {
+          console.log("Error Selecting : %s ",err );
+        }
+        res.render('admin_page',{data:rows});
+      });
+    }
+    else if (req.session.role == "user") {
+      res.render('mcq_questions');
+    }
+    else {
+      res.render('login');
+    }
+  }
 });
 
 router.get('/questions', function(req, res, next) {
@@ -63,10 +82,12 @@ function validate_login_credentials(user_name,password,req,res) {
     if(rows.length > 0) {
       if(String(rows[0].role)=="administrator") {
         console.log("admin");
+        req.session.role = "administrator";
         res.send({code:'console'});
       }      
       else {
         console.log("user");
+        req.session.role = "user";
         res.send({code:'mcq'});
       }
     }

@@ -24,7 +24,6 @@ $(document).ready(function() {
 		        // handle a successful response
 		        success : function(json) {
 		            if( json.code === "mcq") {
-
 		            	console.log("success"); // another sanity check
 		            	window.location.replace("/questions");
 		            } 
