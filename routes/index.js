@@ -7,7 +7,7 @@ var resultOne = 0, resultTwo = 0, resultThree = 0;
 var connection = mysql.createConnection({
   //host     : 'localhost',
   host     : 'ec2-52-24-143-120.us-west-2.compute.amazonaws.com',
-  port : '8001',
+  port : '3306',
   user     : 'root',
   password : '12312312',
   database :'ecommerce',
