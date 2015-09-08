@@ -1,10 +1,5 @@
 $(document).ready(function() { 
 
-	
-
-	$('#logout_button').on('click' , function(event) {
-		
-	});
 
 
 	$('#mcq_form').on('submit' , function(event) {
