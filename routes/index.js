@@ -6,7 +6,7 @@ var resultOne = 0, resultTwo = 0, resultThree = 0;
 
 var connection = mysql.createConnection({
   //host     : 'localhost',
-  host     : 'ecommerce.cbd96bgcytnd.us-west-2.rds.amazonaws.com',
+  host     : 'quizapp.ccwtwgtut47e.us-east-1.rds.amazonaws.com',
   port : '3306',
   user     : 'root',
   password : '12312312',
